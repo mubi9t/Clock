@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Clock</title>
+</head>
+
+<body>
+    <div id="time">
+        <div class="circle one">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="hh"></circle>
+            </svg>
+            <div id="hours">00</div>
+        </div>
+        <div class="circle two">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="mm"></circle>
+            </svg>
+            <div id="minutes">00</div>
+        </div>
+        <div class="circle three">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="ss"></circle>
+            </svg>
+            <div id="seconds">00</div>
+        </div>
+        <div id="ampm">AM</div>
+    </div>
+    <script>
+        setInterval(() => {
+            let hours = document.getElementById("hours");
+            let minute = document.getElementById("minutes");
+            let second = document.getElementById("seconds")
+            let ampm = document.getElementById("ampm")
+            let hh = document.getElementById("hh")
+            let mm = document.getElementById("mm")
+            let ss = document.getElementById("ss");
+
+            let h = new Date().getHours();
+            let m = new Date().getMinutes();
+            let s = new Date().getSeconds();
+            let am = (h >= 12) ? "PM" : "AM";
+            h = (h % 12) || 12;
+
+            ampm.innerHTML = am;
+            hours.innerHTML = h;
+            minute.innerHTML = m;
+            second.innerHTML = s;
+
+            hh.style.strokeDashoffset = 440 - (440 * h) / 12;
+            mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+            ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+
+        }, 1000)
+
+    </script>
+</body>
+
+</html>
